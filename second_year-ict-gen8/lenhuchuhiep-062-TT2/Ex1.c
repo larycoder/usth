@@ -47,7 +47,7 @@ void add_car(head *head){
   printf("number of passengers are: ");//number of passengers info
   scanf("%d",&nu_pas);
   if(nu_pas==0){
-    ;
+    ;//if there is no passengers then dont creat this car
   }
   else mkcar(head,nu_pas,name_car);//create new car with info of user
 }
@@ -83,7 +83,7 @@ void free_train(head *head){
     head->head=head->head->next;//shift head to next node
     free(delete);//delete node
   }
-  free(head);
+  free(head);//delete head of node
 }
 
 //begin program
@@ -92,8 +92,8 @@ int main(){
   head *head=init_train();//init 1 head
   int next=0;
   do{
-    ask(head);
-    printf("\nwhat next ? 1 is add or display train info, 0 will end progra: ");//var to ask if user want to continuous program or not
+    ask(head);//ask user for putting info
+    printf("\nwhat next ? 1 is add or display train info, 0 will end program: ");//var to ask if user want to continuous program or not
     scanf("%d",&next);
   }while(next!=0);
   free_train(head);//free dynamic memory that declare in process
