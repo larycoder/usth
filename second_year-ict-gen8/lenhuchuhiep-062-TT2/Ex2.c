@@ -150,29 +150,46 @@ void calculate_function(head *head){
   int x;//var store value of variable user want to compute
   printf("putting value of x: ");//input x info
   scanf("%d",&x);
-  compute(head,x);//compute engine
+  printf("result = %lld\n",compute(head,x));//compute engine and return result
 }
 
-//function to soft term of list following degree
+//function to sort term following degree by using bubble sort technique
 
-void sort_term(head *head,node *list_term,int *list_degree,int *list_order){
-  //using bubble soft to soft term following order
-
+void sort_term(head *head){
+  int exchange;//var to change 2 term
+  int state=0;//var to count in bubble sort
+  //loop to sort term following degree
+  while(state!=((head->size)-1)){
+    node *change=head->head;//pointer point to node
+    state=0;//default state to 0
+    for(int i=0;i<(head->size-1);i++){
+      if((change->degree)>(change->next->degree)){
+        //change degree of 2 term
+        exchange=change->degree;
+        change->degree=change->next->degree;
+        change->next->degree=exchange;
+        //change constant of 2 term
+        exchange=change->constant;
+        change->constant=change->next->constant;
+        change->next->constant=exchange;
+      }//if brance
+      else state++;
+      change=change->next;//shift pointer to next node
+    }//for brance
+  }//while brance
 }
 
-//function to add pointer to node of list of polynomial function and soft it
+//function to display polynomial function
 
-void prepare_term(head *head){
-  node *list_term[head->size];//create array of pointer to point to each term
-  int list_degree[head->size][2];//create array of all degree in list
-  node *check=head->head;//pointer will move throught all node of list
-  for(int i=0;i<head->size;i++){
-    list_term[i]=check;//add pointer to node
-    list_degree[i]=check->degree;//add degree of node to list of degree
-    list_order[i]=i;//add numerical order of node
-    check=check->next;shift pointer check to next node
+void display_function(head *head){
+  printf("the polynomial function is: \nf(x)=");
+  sort_term(head);//sort term in polynomial function following
+  node *change=head->head;//pointer point to node
+  for(int i=0;i<(head->size-1);i++){
+    printf("%d*x^%d+",change->constant,change->degree);//print polynomial function
+    change=change->next;//shift pointer to next node
   }
-  soft_term(head,list_term,list_degree,list_order);//function to soft term following degree
+  printf("%d*x^%d\n",change->constant,change->degree);//print out final term
 }
 
 //function ask user for their option
@@ -196,5 +213,14 @@ void ask(head *head){
 //begin program
 
 int main(){
+  int end;//var to end program
+  struct head *head=init_head();//create term of polynomial function
+  do{
+    end=0;
+    ask(head);
+    printf("Do you want to continue program ?\n0 is yes and 1 is no: ");
+    scanf("%d",&end);
+  }while(end==0);
+  free_list(head);
   return 0;
 }
