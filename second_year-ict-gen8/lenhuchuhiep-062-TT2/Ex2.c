@@ -218,9 +218,9 @@ int main(){
   do{
     end=0;
     ask(head);
-    printf("Do you want to continue program ?\n0 is yes and 1 is no: ");
+    printf("Do you want to continue program ?\n1 is yes and 0 is no: ");
     scanf("%d",&end);
-  }while(end==0);
+  }while(end==1);
   free_list(head);
   return 0;
 }
