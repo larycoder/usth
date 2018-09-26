@@ -122,11 +122,11 @@ void remove_term(head *head){
 long long int degree_compute(int degree,int x){
   lli final=(lli)x;//var store all multiply of x following its degree
   //case degree is 0
-  if(degree==0) x=1;
+  if(degree==0) final=1;
   //case degree is defferent form 0
   else{
     for(int i=1;i<degree;i++){
-      final*=final;//compute x power
+      final*=(lli)x;//compute x power
     }
   }
   return final;
@@ -138,7 +138,7 @@ long long int compute(head *head,int x){
   long long int sum=0;//var store total calculate of polynomial function
   node *check=head->head;//pointer check will move throught all term to take info
   for(int i=0;i<(head->size);i++){
-    sum+=(lli)(check->constant)*degree_compute(check->degree,x);//calculate polynomial function
+    sum+=degree_compute(check->degree,x)*(lli)(check->constant);//calculate polynomial function
     check=check->next;//shift to next term
   }
   return sum;
