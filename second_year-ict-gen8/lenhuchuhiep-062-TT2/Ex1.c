@@ -20,7 +20,7 @@ typedef struct head{
 //you should init train
 
 struct head *init_train(void){
-  struct head *head=(struct head *)malloc(sizeof(struct head));//define 1 train head
+  struct head *head= (struct head *)malloc(sizeof(struct head));//define 1 train head
   head->size=0;//first length is 0
   head->head=NULL;//when init there is no car in train
   return head;//push head train info to main
