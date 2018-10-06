@@ -89,11 +89,7 @@ int check(struct head *ptr,int c){
   printf("2 numbers is: %d and %d\n",a,b);
   push(ptr,b);
   stack(ptr);
-  if(a==c||b==c){
-    printf("wrong!\n");
-    return 0;
-  }
-  else if(((a-c)*(a-c))<((a-b)*(a-b)))
+  if(((a-c)*(a-c))<((a-b)*(a-b)))
     return 1;
   printf("wrong!\n");
   return 0;
