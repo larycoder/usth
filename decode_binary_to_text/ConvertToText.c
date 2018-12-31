@@ -3,7 +3,10 @@
 
 FILE *fp;               //binary file
 FILE *ftxt;             //text file
+
 unsigned char bit[8];
+
+unsigned char word;     //personal
 
 void Initialize(const char *name){                            //open binary file to read
     fp=fopen(name,"r");
@@ -21,6 +24,7 @@ unsigned char readByte(void){                                 //take byte on fil
 }
 
 void BytetoBit(unsigned char byte){                         //convert byte to bit
+    word=byte;                                                              //personnal
     unsigned char mask=1;
     for(int i=0;i<8;i++){
         bit[7-i]=(byte>>i)&mask;
@@ -44,7 +48,9 @@ int main(){
         for(int i=0;i<8;i++){
             fprintf(ftxt,"%d",bit[i]);
         }
-        fprintf(ftxt,"  ::  ");
+        fprintf(ftxt,"::");
+
+        printf("%c",word);                    //personnal
     }
     printf("successed");
     fclose(fp);
