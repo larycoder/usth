@@ -83,7 +83,7 @@ int main(){
     name_reverse(string);//to user input string and return reverse string
     printf("type 1 to continue program and 0 to end program: ");
     scanf("%d",&end);
-    getchar()
+    getchar();
   }while(end==1);
   free(string);
   return 0;
